@@ -1,0 +1,29 @@
+.display-two-columns{
+    display:    inline-block; 
+    box-sizing: border-box; 
+    width:      calc(50%  - 4px ); 
+    height:     calc(100% - 68px); 
+    clear:      none;
+}
+
+.display-fixed-columns{
+    display:    inline-block; 
+    box-sizing: border-box; 
+    width:      380px; 
+    height:     calc(100% - 68px); 
+    clear:      none;
+}
+
+
+.display-variable-columns{
+    display:    inline-block; 
+    box-sizing: border-box; 
+    width:      calc(100% - 384px ); 
+    height:     calc(100% - 68px  ); 
+    clear:      none;
+}
+
+
+.fill-remaining-space {
+  flex: 1 1 auto;
+}

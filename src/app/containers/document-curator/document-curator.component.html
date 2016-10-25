@@ -1,0 +1,20 @@
+<md-sidenav-layout>
+  
+  <md-sidenav align="start" mode="side" opened>
+
+        <button md-raised-button (click)="getUncuratedDocuments()" >LOAD UNCURATED DOCUMENTS</button>  
+
+        <button md-button *ngFor="let item of uncuratedDocumentsStream | async " (click)="getFactsFor(item)" >{{ item.documentTitle }}</button>
+     
+  </md-sidenav>
+
+  <div style="height: 100%">
+
+    <app-selected-document 
+      style="height: 100%"
+      [selectedDocument]="selectedDocumentStream | async"
+    ></app-selected-document>
+
+  </div>
+
+</md-sidenav-layout>

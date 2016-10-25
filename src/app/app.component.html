@@ -1,3 +1,26 @@
-<h1>
-  {{title}}
-</h1>
+<div >
+  <md-toolbar color="primary">
+    <span>{{title}}</span>
+    <button md-icon-button routerLink="/documents" >
+      <md-icon class="md-24">insert_drive_file</md-icon>
+    </button>
+    <button md-icon-button routerLink="/countries" >
+      <md-icon class="md-24">public</md-icon>
+    </button>
+    
+    <span class="fill-remaining-space"></span>
+    
+    <md-input type="text"     placeholder="User Name"  #userNameInput> </md-input>
+    &nbsp;
+    <md-input type="password" placeholder="Password"   #passwordInput> </md-input>
+    <button md-button>Login</button>
+    
+  </md-toolbar>
+
+
+  <router-outlet></router-outlet>
+  
+</div>
+
+
+ 
