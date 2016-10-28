@@ -1,20 +1,20 @@
 import { Reducer, combineReducers} from 'redux';
 // import { OpaqueToken }             from '@angular/core';
 
-import {IDocumentsState, initialDocumentsState, documentsReducer} from './reducers/documents-reducer';
+import {IDocumentsState, initialDocumentsState, riskReducer} from './reducers/risk-reducer';
 
 // export const AppStore = new OpaqueToken('App.store');
 
 
 export interface IApplicationState {
-    documents: IDocumentsState;
+    risk: IDocumentsState;
 };
 
 export const initialState = {
-    documents: initialDocumentsState
+    risk: initialDocumentsState
 }
 
 export const rootReducer: Reducer<IApplicationState> = combineReducers<IApplicationState>({
-    documents: documentsReducer
+    risk: riskReducer
 });
 

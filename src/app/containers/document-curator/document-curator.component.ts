@@ -2,7 +2,7 @@ import { Component, OnInit }   from '@angular/core';
 import { select     }          from 'ng2-redux';
 import { Observable }          from 'rxjs/Observable';
 
-import {IDocument}             from '../../reducers/documents-reducer';
+import {IDocument}             from '../../reducers/risk-reducer';
 import {RiskConnector}         from '../../connectors/risk-connector';
 
 @Component({
@@ -13,9 +13,9 @@ import {RiskConnector}         from '../../connectors/risk-connector';
 export class DocumentCuratorComponent implements OnInit {
 
 
-   // @select(['documents', 'count'     ]) countDocumentsStream:             Observable<IDocument[]>;
-    @select(['documents', 'uncurated' ]) uncuratedDocumentsStream:         Observable<IDocument[]>;
-    @select(['documents', 'selected'  ]) selectedDocumentStream:           Observable<IDocument>;
+//  @select(['risk', 'count'             ]) countDocumentsStream:             Observable<IDocument[]>;
+    @select(['risk', 'uncurated'         ]) uncuratedStream:                  Observable<IDocument[]>;
+    @select(['risk', 'selectedDocument'  ]) selectedDocumentStream:           Observable<IDocument>;
 
     constructor (
       private riskConnector: RiskConnector

@@ -3,7 +3,7 @@ import { Http, Response }         from '@angular/http';
 import { NgRedux    }             from 'ng2-redux';
 
 import {IApplicationState}                                                             from '../app.reducer';
-import {IDocument, loadUncurated, loadFacts, updateFactCategory, updateFactText}       from '../reducers/documents-reducer';
+import {IDocument, loadUncurated, loadFacts, updateFacts}                              from '../reducers/risk-reducer';
 
 @Injectable()
 export class RiskConnector {
@@ -33,7 +33,7 @@ export class RiskConnector {
 
     this.http.get(this.restUrl + `risk/documents/${document.documentId}/facts`)
              .subscribe((response: Response) => {
-
+ 
                 const data = response.json();
 
                 data.forEach( item => {
@@ -60,20 +60,25 @@ export class RiskConnector {
 
   saveFactCategory(fact, category) {
 
-    this.ngRedux.dispatch( updateFactCategory( category, fact ));
-
     this.http.put(this.restUrl + `risk/facts/${fact.factId}`, {category: category})
       .subscribe((response: Response) => {
+
+        const data = response.json();
+
+        this.ngRedux.dispatch( updateFacts( data ) );
+
       });
 
   }
 
   saveFactText(fact, text) {
 
-     this.ngRedux.dispatch( updateFactText( text, fact ));
-
     this.http.put(this.restUrl + `risk/facts/${fact.factId}`, {text: text})
       .subscribe((response: Response) => {
+
+        const data = response.json();
+
+        this.ngRedux.dispatch( updateFacts( data ) );
       });
 
   }

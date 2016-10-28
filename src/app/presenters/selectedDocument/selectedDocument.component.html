@@ -1,4 +1,4 @@
-<md-toolbar color="accent">
+<!--<md-toolbar color="accent">
   <button md-button (click)="openDocumentInNewWindow(selectedDocument.documentSource)">{{selectedDocument.documentSource}}</button> 
 
   <span class="fill-remaining-space"></span> 
@@ -20,9 +20,9 @@
       <button md-menu-item color="warn"> Reset Document Editing </button>
   </md-menu>
 
-</md-toolbar>
+</md-toolbar>-->
 
-<div class="display-fixed-columns" style="overflow-y: auto">
+<!--<div class="display-fixed-columns" style="overflow-y: auto">
 
   <md-card *ngFor="let fact of selectedDocument.facts" >
     <md-card-subtitle>
@@ -58,5 +58,64 @@
      </sebm-google-map-polyline>
   </sebm-google-map>
 
-</div>  
+</div>  -->
+
+<md-tab-group>
+  <md-tab>
+    <template md-tab-label>Document Source</template>
+    <template md-tab-content>
+  
+      <md-card >
+        <md-card-subtitle>
+          {{selectedDocument.documentTitle}}
+        </md-card-subtitle>
+        <md-card-content> 
+          <div *ngFor="let fact of selectedDocument.facts" >
+            <button md-icon-button color="accent" (click)="openEditor(fact)">
+              <md-icon class="md-24">edit</md-icon>
+            </button>
+            <button md-icon-button color="accent" >
+              <md-icon class="md-24">call_merge</md-icon>
+            </button>
+            <button md-icon-button color="warn" (click)="saveFactStatus(fact, 'DISCARD')">
+              <md-icon class="md-24">delete</md-icon>
+            </button>
+            <span [style.textDecoration]="fact.factCategory === 'DISCARD' ? 'line-through' : '' " >{{fact.factText}}</span>
+         </div>  
+        </md-card-content>    
+        <md-card-actions>
+          <button md-button (click)="openDocumentInNewWindow(selectedDocument.documentSource)">{{selectedDocument.documentSource}}</button>
+        </md-card-actions>
+      </md-card>   
+
+    </template>
+  </md-tab>
+  <md-tab>
+    <template md-tab-label>Fact Categories</template>
+    <template md-tab-content>
+
+      <md-card *ngFor="let fact of selectedDocument.facts" >
+        <md-card-subtitle>
+          {{fact.countryName}}
+          <button md-icon-button (click)="openEditor(fact)">
+            <md-icon class="md-24">edit</md-icon>
+          </button>
+          <button md-icon-button>
+            <md-icon class="md-24">call_merge</md-icon>
+          </button>
+        </md-card-subtitle>
+        <md-card-content>{{fact.displayText ? fact.displayText : fact.factText }}</md-card-content>    
+        <md-card-actions>
+          <button md-button *ngFor="let category of fact.categories" 
+            color="primary" 
+            (click)="saveFactStatus(fact, category)"
+            [style.border-width.px]="category === fact.factCategory ? 1 : 0" 
+            [style.border-style]="'solid'"
+          >{{category}}</button>
+        </md-card-actions>
+      </md-card> 
+
+    </template>
+  </md-tab>
+</md-tab-group>
 
