@@ -4,11 +4,11 @@ Curates facts scraped from various public websites
 This application is a "Proof of Concept" project built with Redux, Angular 2 and Angular Material 2
 
 The following are used to manage the asynchronous data pipeline
-* app/connectors
-* app/reducers 
+* [app/connectors](https://github.com/daniel-payne/voyagemapper-documentcurator/tree/master/src/app/containers)
+* [app/reducers](https://github.com/daniel-payne/voyagemapper-documentcurator/tree/master/src/app/reducers) 
 
 The data stream flows back into the application with the use of ng2-redux in 
-* app/containers
+* [app/containers](https://github.com/daniel-payne/voyagemapper-documentcurator/tree/master/src/app/containers) 
 
 
 ```javascript 
@@ -19,7 +19,7 @@ The data stream flows back into the application with the use of ng2-redux in
 
 
 The data is visualized using standard angular2 @input in 
-* app/presenters
+* [app/presenters](https://github.com/daniel-payne/voyagemapper-documentcurator/tree/master/src/app/presenters) 
 
 ![Dataflow](https://raw.githubusercontent.com/daniel-payne/voyagemapper-documentcurator/master/Images/DataFlow.png)
  
