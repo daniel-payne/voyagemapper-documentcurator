@@ -18,8 +18,11 @@ The data stream flows back into the application with the use of ng2-redux in
 ``` 
 
 
-The data is visualized using standard angular2 @input in 
+The data is visualized using standard angular2 @input/@Output in 
 * [app/presenters](https://github.com/daniel-payne/voyagemapper-documentcurator/tree/master/src/app/presenters) 
+
+Any "Dumb" presentation components or commonly resued used visual components are in 
+* [app/displayers](https://github.com/daniel-payne/voyagemapper-documentcurator/tree/master/src/app/displayers) 
 
 ![Dataflow](https://raw.githubusercontent.com/daniel-payne/voyagemapper-documentcurator/master/Images/DataFlow.png)
  
