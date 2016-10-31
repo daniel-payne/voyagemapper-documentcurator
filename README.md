@@ -21,5 +21,5 @@ The data stream flows back into the application with the use of ng2-redux in
 The data is visualized using standard angular2 @input in 
 * app/presenters
 
-![Dataflow](https://raw.githubusercontent.com/daniel-payne/voyagemapper-documentcurator/master/Images/dataflow.png)
+![Dataflow](https://raw.githubusercontent.com/daniel-payne/voyagemapper-documentcurator/master/Images/DataFlow.png)
  
