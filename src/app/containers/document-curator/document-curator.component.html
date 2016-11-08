@@ -4,7 +4,7 @@
 
         <button md-raised-button (click)="getUncuratedDocuments()" >LOAD UNCURATED DOCUMENTS</button>  
 
-        <button md-button *ngFor="let item of uncuratedStream | async " (click)="getFactsFor(item)" >{{ item.documentTitle }}</button>
+        <button md-button *ngFor="let item of documentsStream | async " (click)="getFactsFor(item)" >{{ item.documentTitle }}</button>
      
   </md-sidenav>
 

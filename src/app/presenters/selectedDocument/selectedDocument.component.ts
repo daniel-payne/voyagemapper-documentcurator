@@ -58,8 +58,20 @@ export class SelectedDocumentComponent implements OnInit, OnChanges {
 
   }
 
+  saveFactDiscarded(fact) {
+    this.riskConnector.saveFactDiscarded(fact);
+  }
+
   saveFactStatus(fact, category) {
     this.riskConnector.saveFactCategory(fact, category);
+  }
+
+  saveFactMerge(fact) {
+    this.riskConnector.saveFactMerge(fact);
+  }
+
+  resetDocument(document) {
+    this.riskConnector.resetDocument(document);
   }
 
   saveDocumentStatusAsCurrated(document) {
@@ -76,7 +88,7 @@ export class SelectedDocumentComponent implements OnInit, OnChanges {
 
     this.dialogRef = this.dialog.open(DocumentEditDialogComponent, config);
 
-    this.dialogRef.componentInstance.editText = fact.factText;
+    this.dialogRef.componentInstance.editText = fact.displayText ? fact.displayText : fact.factText ;
 
     this.dialogRef.afterClosed().subscribe(result => {
 

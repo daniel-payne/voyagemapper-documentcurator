@@ -52,9 +52,26 @@ export class RiskConnector {
 
                 });
 
-                this.ngRedux.dispatch( loadFacts( data, document ));
+                this.ngRedux.dispatch( loadFacts( data, document ) );
 
             });
+
+  }
+
+  saveFactDiscarded(fact) {
+
+    let isDiscarded = fact.isDiscarded || false;
+
+    isDiscarded = !isDiscarded;
+
+    this.http.put(this.restUrl + `risk/facts/${fact.factId}`, {isDiscarded: isDiscarded})
+      .subscribe((response: Response) => {
+
+        const data = response.json();
+
+        this.ngRedux.dispatch( updateFacts( data ) );
+
+      });
 
   }
 
@@ -71,6 +88,18 @@ export class RiskConnector {
 
   }
 
+  saveFactMerge(fact) {
+
+    this.http.put(this.restUrl + `risk/facts/${fact.factId}`, {isMerged: true})
+      .subscribe((response: Response) => {
+
+        const data = response.json();
+
+        this.ngRedux.dispatch( updateFacts( data ) );
+      });
+
+  }
+
   saveFactText(fact, text) {
 
     this.http.put(this.restUrl + `risk/facts/${fact.factId}`, {text: text})
@@ -83,4 +112,16 @@ export class RiskConnector {
 
   }
 
+  resetDocument(document: IDocument) {
+
+    this.http.put(this.restUrl + `risk/documents/${document.documentId}`, {reset: true})
+      .subscribe((response: Response) => {
+
+        const data = response.json();
+
+        this.ngRedux.dispatch( loadFacts( data, document ) );
+
+      });
+
+  }
 }

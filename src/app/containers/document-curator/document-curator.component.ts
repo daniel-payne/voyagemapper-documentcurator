@@ -14,7 +14,7 @@ export class DocumentCuratorComponent implements OnInit {
 
 
 //  @select(['risk', 'count'             ]) countDocumentsStream:             Observable<IDocument[]>;
-    @select(['risk', 'uncurated'         ]) uncuratedStream:                  Observable<IDocument[]>;
+    @select(['risk', 'documents'         ]) documentsStream:                  Observable<IDocument[]>;
     @select(['risk', 'selectedDocument'  ]) selectedDocumentStream:           Observable<IDocument>;
 
     constructor (

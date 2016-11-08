@@ -67,25 +67,27 @@
   
       <md-card >
         <md-card-subtitle>
-          {{selectedDocument.documentTitle}}
-        </md-card-subtitle>
+           <button md-button (click)="openDocumentInNewWindow(selectedDocument.documentSource)">{{selectedDocument.documentTitle}}</button>
+           <button md-mini-fab (click)="resetDocument(selectedDocument)">
+            <md-icon class="md-24" color="warn">undo</md-icon>
+           </button>
+       </md-card-subtitle>
         <md-card-content> 
           <div *ngFor="let fact of selectedDocument.facts" >
             <button md-icon-button color="accent" (click)="openEditor(fact)">
               <md-icon class="md-24">edit</md-icon>
             </button>
-            <button md-icon-button color="accent" >
+            <button md-icon-button color="accent" (click)="saveFactMerge(fact)">
               <md-icon class="md-24">call_merge</md-icon>
             </button>
-            <button md-icon-button color="warn" (click)="saveFactStatus(fact, 'DISCARD')">
+            <button md-icon-button color="warn" (click)="saveFactDiscarded(fact)">
               <md-icon class="md-24">delete</md-icon>
             </button>
-            <span [style.textDecoration]="fact.factCategory === 'DISCARD' ? 'line-through' : '' " >{{fact.factText}}</span>
+            <span [style.textDecoration]="fact.isDiscarded ? 'line-through' : '' " >
+              {{ (fact.isMerged === true || fact.displayText) ? fact.displayText : fact.factText}}
+            </span>
          </div>  
         </md-card-content>    
-        <md-card-actions>
-          <button md-button (click)="openDocumentInNewWindow(selectedDocument.documentSource)">{{selectedDocument.documentSource}}</button>
-        </md-card-actions>
       </md-card>   
 
     </template>
