@@ -1,65 +1,61 @@
-import { BrowserModule }  from '@angular/platform-browser';
-import { NgModule }       from '@angular/core';
-import { FormsModule }    from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { ErrorHandler, NgModule } from '@angular/core';
+import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { SplashScreen } from '@ionic-native/splash-screen';
+import { StatusBar } from '@ionic-native/status-bar';
+//import { IonicPageModule } from 'ionic-angular';
+
 import { HttpModule }     from '@angular/http';
-import { MaterialModule } from '@angular/material';
-import { AgmCoreModule }  from 'angular2-google-maps/core';
 
 import { StoreEnhancer }          from 'redux';
 import { NgReduxModule, NgRedux } from 'ng2-redux';
 
-import { AppComponent }                                 from './app.component';
+import { Geolocation } from '@ionic-native/geolocation';
+
+import { MyApp } from './app.component';
 import { IApplicationState, rootReducer, initialState}  from './app.reducer';
 
-import { RiskConnector }                      from './connectors/risk-connector';
-import { ApplicationRoutes }                  from './app-routing.module';
+import { RiskConnector }                      from '../connectors/risk-connector';
 
-import { DocumentCuratorComponent }           from './containers/document-curator/document-curator.component';
-import { CountryCuratorComponent }            from './containers/country-curator/country-curator.component';
+import { HomePage }        from '../pages/home/home';
 
-import { SelectedDocumentComponent }          from './presenters/selectedDocument/selectedDocument.component';
-import { DocumentListingComponent }           from './presenters/document-listing/document-listing.component';
-import { CountryListingComponent }            from './presenters/country-listing/country-listing.component';
-import { DocumentEditDialogComponent }        from './presenters/document-edit-dialog/document-edit-dialog.component';
- 
+import { MapModule }         from '../pages/map/map.module';
+import { DocumentModule}     from '../pages/document/document.module'; 
+
 let devtools: StoreEnhancer<IApplicationState> =
   window['devToolsExtension'] ?
   window['devToolsExtension']() : f => f;
 
 @NgModule({
   declarations: [
-    AppComponent,
-    SelectedDocumentComponent,
-    DocumentCuratorComponent,
-    CountryCuratorComponent,
-    CountryListingComponent,
-    DocumentListingComponent,
-    DocumentEditDialogComponent 
-  ],
-  entryComponents: [
-    DocumentEditDialogComponent
+    MyApp,
+    HomePage 
   ],
   imports: [
     BrowserModule,
-    FormsModule,
-    HttpModule,
     NgReduxModule,
-    ApplicationRoutes,
-    MaterialModule.forRoot(),
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBGlrG3kSfPgg0ii-XFkIy-zoOiXnOxW1c'
-    })
+    HttpModule,
+    IonicModule.forRoot(MyApp),
+    //Page Modules
+    MapModule,
+    DocumentModule 
+  ],
+  bootstrap: [IonicApp],
+  entryComponents: [
+    MyApp,
+    HomePage  
   ],
   providers: [
+    StatusBar,
+    SplashScreen,
+    Geolocation,
     RiskConnector,
-    { provide: 'REST_URL', useValue: 'http://localhost:5000/'}
-  ],
-  bootstrap: [
-    AppComponent
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    {provide: 'REST_URL', useValue: 'http://localhost:1337/'}
   ]
 })
 export class AppModule {
-
+  
   constructor(ngRedux: NgRedux<IApplicationState>) {
     ngRedux.configureStore(rootReducer, initialState, [], [devtools] );
   }

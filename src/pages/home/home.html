@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Voyage Mapper
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="getUncuratedDocuments()">
+        <ion-icon name="map"></ion-icon>
+      </button>
+    </ion-buttons>  
+  </ion-navbar>
+</ion-header>
+ 
+<ion-content>
+
+  <ion-card  *ngFor="let item of documentsStream | async "> 
+    <ion-card-header>
+      <button ion-button clear (click)="getFactsFor(item)">{{item.documentTitle}}</button>
+    </ion-card-header>
+    <ion-card-content>
+      {{item.documentSource}}
+    </ion-card-content>
+    
+  </ion-card>
+
+
+</ion-content>
